@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TextFileChallenge")]
+[assembly: AssemblyTitle("ConsoleUI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TextFileChallenge")]
+[assembly: AssemblyProduct("ConsoleUI")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e8f410ab-862f-4a71-a460-672dc547c756")]
+[assembly: Guid("ef9abb75-1887-4d79-860d-2bc24e06a289")]
 
 // Version information for an assembly consists of the following four values:
 //

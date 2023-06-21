@@ -1,34 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TextFileChallenge
 {
     public partial class ChallengeForm : Form
-    { 
-        BindingList<UserModel> usersS = new BindingList<UserModel>();
-        BindingList<UserModel> usersA = new BindingList<UserModel>();
-        string csvStandardPath = @"StandardDataSet.csv";
-        string csvAdvancedPath = @"AdvancedDataSet.csv";
+    {
+        private BindingList<UserModel> usersS = new BindingList<UserModel>();
+        private BindingList<UserModel> usersA = new BindingList<UserModel>();
+        private string csvStandardPath = @"StandardDataSet.csv";
+        private string csvAdvancedPath = @"AdvancedDataSet.csv";
+
         public ChallengeForm()
         {
             InitializeComponent();
             var csvStandard = File.ReadAllLines(csvStandardPath).ToList();
             var csvAdvanced = File.ReadAllLines(csvAdvancedPath).ToList();
             usersS = Standard(csvStandard);
-            usersA= Advanced(csvAdvanced);
+            usersA = Advanced(csvAdvanced);
             WireUpDropDown();
-
         }
+
         private BindingList<UserModel> Standard(List<string> ls)
-        { 
+        {
             var bL = new BindingList<UserModel>();
             for (int i = 1; i < ls.Count; i++)
             {
@@ -37,11 +34,12 @@ namespace TextFileChallenge
                 model.FirstName = data[0];
                 model.LastName = data[1];
                 model.Age = Convert.ToInt32(data[3]);
-                model.IsAlive = data[3].Trim()=="0" ?true : false;
+                model.IsAlive = data[3].Trim() == "0" ? true : false;
                 bL.Add(model);
             }
             return bL;
         }
+
         private BindingList<UserModel> Advanced(List<string> ls)
         {
             var bL = new BindingList<UserModel>();
@@ -76,11 +74,11 @@ namespace TextFileChallenge
             UserModel model = ModelCreator();
             if (radioButton1.Checked)
             {
-                usersS.Add(model); 
+                usersS.Add(model);
             }
             else
             {
-                usersA.Add(model); 
+                usersA.Add(model);
             }
             WireUpDropDown();
         }
@@ -102,22 +100,22 @@ namespace TextFileChallenge
         }
 
         private void saveListButton_Click(object sender, EventArgs e)
-        { 
-            if(radioButton1.Checked)
+        {
+            if (radioButton1.Checked)
             {
-                var text = firstNameText.Text +","+lastNameText.Text +","+agePicker.Value +","+(isAliveCheckbox.Checked?0:1);
-                var csvStandard = File.ReadAllLines(csvStandardPath).ToList(); 
+                var text = firstNameText.Text + "," + lastNameText.Text + "," + agePicker.Value + "," + (isAliveCheckbox.Checked ? 0 : 1);
+                var csvStandard = File.ReadAllLines(csvStandardPath).ToList();
                 csvStandard.Add(text);
                 File.AppendAllLines(csvStandardPath, csvStandard);
-                usersS = Standard(csvStandard); 
+                usersS = Standard(csvStandard);
             }
             else
-            { 
-                var txt = agePicker.Value + ","+lastNameText.Text +","+ (isAliveCheckbox.Checked ? 0 : 1) + ","+firstNameText.Text;
-                var csvAdvanced = File.ReadAllLines(csvAdvancedPath).ToList(); 
+            {
+                var txt = agePicker.Value + "," + lastNameText.Text + "," + (isAliveCheckbox.Checked ? 0 : 1) + "," + firstNameText.Text;
+                var csvAdvanced = File.ReadAllLines(csvAdvancedPath).ToList();
                 csvAdvanced.Add(txt);
                 File.AppendAllLines(csvStandardPath, csvAdvanced);
-                usersA = Advanced(csvAdvanced); 
+                usersA = Advanced(csvAdvanced);
             }
             WireUpDropDown();
         }
